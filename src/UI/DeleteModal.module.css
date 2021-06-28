@@ -1,0 +1,67 @@
+.modal {
+	box-sizing: border-box;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 110px;
+	z-index: 10;
+	overflow: hidden;
+	background: #8e9eab;
+	background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+	background: linear-gradient(to right, #eef2f3, #8e9eab);
+	border-radius: 10px;
+	border: 1px double white;
+	padding: 20px;
+	box-shadow: 1.5px 1.5px 2px rgb(255, 201, 201, 1);
+}
+.modal .buttons {
+	display: flex;
+	justify-content: center;
+}
+.modal .buttons button {
+	width: 4rem;
+	outline: none;
+	border: none;
+	margin: 0 5px;
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 1.5px 1.5px 1px rgba(0, 0, 0, 0.7);
+	transition: all 0.7s;
+}
+.modal .buttons .yes-btn {
+	border: 2px solid rgb(159, 190, 248);
+}
+.modal .buttons button:hover {
+	background: rgba(211, 217, 223, 0.9);
+}
+.modal p {
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+.modal .warning {
+	margin-right: 5px;
+	color: rgb(187, 67, 67);
+}
+
+@media (max-width: 900px) {
+	.modal {
+		font-size: 0.9rem;
+		padding-bottom: 0;
+		justify-content: space-evenly;
+		padding: 5px;
+	}
+	.modal p {
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 620px) {
+	.modal p {
+		font-size: 0.9rem;
+		text-align: center;
+	}
+}

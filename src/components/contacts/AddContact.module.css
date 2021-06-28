@@ -1,0 +1,82 @@
+.form-control {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-items: left;
+	text-align: left;
+	height: 100%;
+	border-radius: 10px;
+	position: relative;
+	width: 600px;
+	max-width: 80%;
+}
+.form-control form {
+	width: 75%;
+}
+.form-control .new-contact-header {
+	text-align: center;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.inputField {
+	display: flex;
+	flex-direction: column;
+	margin: 3px 0;
+}
+.inputField.invalid input {
+	border: 1px solid rgb(144, 7, 7);
+	background-color: rgb(209, 158, 158);
+}
+
+.inputField input {
+	font-size: 1.1rem;
+	outline: none;
+	width: 90%;
+	line-height: 10px;
+	padding: 5px 8px;
+	font-weight: normal;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px rgb(0, 0, 0, .7);
+	margin: 5px;
+}
+
+.inputField input:focus {
+	outline: none;
+}
+
+.inputField label {
+	font-style: italic;
+}
+
+.submit-btn {
+	margin-top: 10px;
+}
+
+.form-control .cancel-btn {
+	background-color: rgb(224, 69, 69);
+	width: 30px;
+	height: 35px;
+	padding: 2px;
+	color: white;
+	border-radius: 5px;
+	line-height: 25px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	margin-top: 0;
+	box-shadow: none;
+	box-shadow: 1.5px 2px 1.5px rgba(102, 81, 90, 0.6);
+}
+
+.form-control .cancel-btn:hover {
+	background-color: rgb(218, 116, 116);
+}
+
+@media (max-width: 950px) {
+	.form-control {
+		max-width: 85%;
+	}
+}

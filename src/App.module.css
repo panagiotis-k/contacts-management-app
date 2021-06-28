@@ -1,0 +1,14 @@
+html {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	background: #bdc3c7;
+	background: -webkit-linear-gradient(to left, #859398, #2c3e50);
+	background: linear-gradient(to right, #2c3e50, #bdc3c7);
+}
+.app {
+	position: relative;
+	font-family: 'Raleway', sans-serif;
+	flex-direction: column;
+	background-color: red;
+}

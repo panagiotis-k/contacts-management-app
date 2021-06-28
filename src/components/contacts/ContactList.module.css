@@ -1,0 +1,63 @@
+.contactList {
+	box-sizing: border-box;
+	width: 1200px;
+	max-width: 90%;
+	margin: 0;
+	position: absolute;
+	top: 0px;
+	right: 50%;
+	transform: translateX(50%);
+	height: fit-content;
+	bottom: 200px;
+	padding: 40px 30px 25px 30px;
+}
+th {
+	font-weight: 900;
+}
+
+td {
+	font-weight: 500;
+	color: rgb(248, 245, 234);
+}
+
+th,
+td {
+	text-align: center;
+}
+
+.contactList span {
+	font-size: 1.2rem;
+	letter-spacing: 2.3px;
+	color: white;
+	font-style: italic;
+}
+
+.contactList .button {
+	position: absolute;
+	top: 10px;
+	left: 30px;
+	width: 50px;
+}
+@media (max-width: 1055px) {
+	.contactList {
+		padding-left: 2px;
+		padding-right: 2px;
+		font-size: 14px;
+	}
+}
+@media (max-width: 1000px) {
+	.contactList {
+		font-size: 12px;
+	}
+	.contactList .button {
+		width: 30px;
+	}
+}
+@media (max-width: 680px) {
+	.contactList {
+		font-size: 8px;
+	}
+	.contactList .button {
+		width: 24px;
+	}
+}
