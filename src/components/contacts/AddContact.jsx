@@ -251,17 +251,19 @@ const AddContact = (props) => {
 					<div className={`${styles.inputField} ${styles[`${firstNameInputClasses}`]}`}>
 						<label htmlFor="firstname">First-name:</label>
 						<input id="firstname" type="text" onChange={firstnameHandler} value={enteredFirstname} />
+						{firstNameInputeIsInvalid && (
+							<span style={{ color: 'rgb(144, 7, 7)' }}>First-name must not be empty</span>
+						)}
 					</div>
-					{firstNameInputeIsInvalid && (
-						<span style={{ color: 'rgb(144, 7, 7)' }}>First-name must not be empty</span>
-					)}
+
 					<div className={`${styles.inputField} ${styles[`${lastNameInputClasses}`]}`}>
 						<label htmlFor="lastname">Last-name:</label>
 						<input id="lastname" type="text" onChange={lastnameHandler} value={enteredLastname} />
+						{lastNameInputIsInvalid && (
+							<span style={{ color: 'rgb(144, 7, 7)' }}>Last-name must not be empty</span>
+						)}
 					</div>
-					{lastNameInputIsInvalid && (
-						<span style={{ color: 'rgb(144, 7, 7)' }}>Last-name must not be empty</span>
-					)}
+
 					<div className={styles.inputField}>
 						<label htmlFor="address">Address:</label>
 						<input id="address" type="text" onChange={addressHandler} value={enteredAddress} />
@@ -269,13 +271,14 @@ const AddContact = (props) => {
 					<div className={`${styles.inputField} ${styles[`${emailInputClasses}`]}`}>
 						<label htmlFor="email">Email:</label>
 						<input id="email" type="email" onChange={emailHandler} value={enteredEmail} />
+						{emailInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid email</span>}
 					</div>
-					{emailInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid email</span>}
 					<div className={`${styles.inputField} ${styles[`${phoneInputClasses}`]}`}>
 						<label htmlFor="tel">Phone:</label>
 						<input id="tel" type="text" onChange={phoneHandler} value={enteredPhone} />
+						{phoneInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid Phone number</span>}
 					</div>
-					{phoneInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid Phone number</span>}
+
 					<Button className={styles['submit-btn']} type="submit">
 						Add
 					</Button>

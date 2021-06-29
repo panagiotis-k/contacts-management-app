@@ -3,9 +3,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	align-items: left;
 	text-align: left;
-	height: 100%;
+	height: 90%;
 	border-radius: 10px;
 	position: relative;
 	width: 600px;
@@ -25,6 +24,8 @@
 .inputField {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	height: 70px;
 	margin: 5px;
 }
 .inputField.invalid input {
@@ -50,8 +51,7 @@
 
 form span {
 	font-size: 12px;
-	display: inline-block;
-	margin-bottom: 3px;
+	/* display: inline-block; */
 }
 
 .inputField label {
@@ -64,6 +64,7 @@ form span {
 	position: relative;
 	bottom: 1px;
 	background-color: rgb(24, 141, 24, .4);
+	border: none;
 }
 
 .submit-btn:hover {
