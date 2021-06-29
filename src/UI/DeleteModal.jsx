@@ -10,7 +10,6 @@ const DeleteModalOverlay = (props) => {
 		deleteContact(idToDelete);
 	};
 
-	
 	const cancelDeletion = () => {
 		setConfirmationDeleteMsg(false);
 	};

@@ -233,10 +233,11 @@ const EditContact = (props) => {
 							onChange={firstnameHandler}
 							value={firstName || ''}
 						/>
+						{firstNameInputeIsInvalid && (
+							<span style={{ color: 'rgb(144, 7, 7)' }}>First-name must not be empty</span>
+						)}
 					</div>
-					{firstNameInputeIsInvalid && (
-						<span style={{ color: 'rgb(144, 7, 7)' }}>First-name must not be empty</span>
-					)}
+
 					<div className={`${styles.inputField} ${styles[`${lastNameInputClasses}`]}`}>
 						<label htmlFor="lastName">Last-name:</label>
 						<input
@@ -246,10 +247,11 @@ const EditContact = (props) => {
 							onChange={lastnameHandler}
 							value={lastName || ''}
 						/>
+						{lastNameInputIsInvalid && (
+							<span style={{ color: 'rgb(144, 7, 7)' }}>Last-name must not be empty</span>
+						)}
 					</div>
-					{lastNameInputIsInvalid && (
-						<span style={{ color: 'rgb(144, 7, 7)' }}>Last-name must not be empty</span>
-					)}
+
 					<div className={styles.inputField}>
 						<label htmlFor="address">Address:</label>
 						<input
@@ -263,8 +265,9 @@ const EditContact = (props) => {
 					<div className={`${styles.inputField} ${styles[`${emailInputClasses}`]}`}>
 						<label htmlFor="email">Email:</label>
 						<input id="email" name="email" type="email" onChange={emailHandler} value={email || ''} />
+						{emailInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid email</span>}
 					</div>
-					{emailInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid email</span>}
+
 					<div className={`${styles.inputField} ${styles[`${phoneInputClasses}`]}`}>
 						<label htmlFor="tel">Phone:</label>
 						<input
@@ -274,8 +277,9 @@ const EditContact = (props) => {
 							onChange={phoneHandler}
 							value={phoneNumber || ''}
 						/>
+						{phoneInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid Phone number</span>}
 					</div>
-					{phoneInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid Phone number</span>}
+
 					<Button className={styles['submit-btn']} type="submit">
 						Save
 					</Button>

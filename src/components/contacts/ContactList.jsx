@@ -7,7 +7,6 @@ import Button from '../../UI/Button';
 const ContactList = (props) => {
 	const { deleteBtnHandler, editBtnHandler } = useContext(ContactsContext);
 
-	
 	const deleteHandler = (id) => {
 		deleteBtnHandler(id);
 	};
