@@ -6,7 +6,7 @@ import styles from './EditContact.module.css';
 import ContactModal from '../../UI/ContactModal';
 import validator from 'validator';
 
-//follows the same pattern as AddContact Component
+//follows the same pattern as the AddContact Component
 const EditContact = (props) => {
 	const { contactForEdit, setContactForEdit } = props;
 	const { firstName, lastName, address, email, phoneNumber } = contactForEdit;

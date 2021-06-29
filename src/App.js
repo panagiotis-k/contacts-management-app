@@ -23,10 +23,15 @@ function App() {
 		});
 	};
 
+	//Calling API
+	//(requesting the endpoint '/contacts' to return the list of contacts that are saved on my DB)
+	//during the Component first mounting
 	useEffect(() => {
 		refreshContacts();
 	}, []);
 
+	//listens to the 'add' button  click inside the AddContact Component when the form is submitted
+	//a RQ is being sent to the backend API
 	const onSubmitAddHandler = (contact) => {
 		postContact(contact).then((data) => {
 			refreshContacts();
@@ -34,6 +39,8 @@ function App() {
 		setAddBtn(false);
 	};
 
+	//listens to the 'save' button click inside the EditContact Component when the form is submitted
+	//a RQ is being sent to the backend API
 	const onSubmitEditHandler = (id, contact) => {
 		setEditBtn(false);
 		editContactById(id, contact)
@@ -45,6 +52,12 @@ function App() {
 			});
 	};
 
+	//When the button for editing the already existing contact inside ContactList Component
+	//(the orange one with the edit user icon from FontAwesome library
+	//This functions gets thes id of the specific contact user wants to Edit
+	//and a RQ is being sent to my backend API endpoint for getting the contact's data
+	//in order to use this contact's info(I  save it to a local state variable) into
+	//the EditContact Component(All fields are prefilled with the above info when this EdicComponent renders)
 	const editBtnHandler = (id) => {
 		setEditBtn(true);
 		setIdToEdit(id);
@@ -55,6 +68,9 @@ function App() {
 		});
 	};
 
+	//When YES button is clicked inside DeleteModal this functions is called
+	//Then a RQ is being sent the backend API for deleting this contact with this specific id
+	//and refresing again the list to render the remaining contacts 'on the fly'
 	const deleteContact = (id) => {
 		// setContacts((prevContacts) => {
 		// 	return prevContacts.filter((contact) => contact.id !== id);
@@ -66,16 +82,26 @@ function App() {
 		setConfirmationDeleteMsg(false);
 	};
 
+	//It listens the click event of the delete icon inside the ContactList Component
+	//(the red one with the trash bin icon from FontAwesome lib )
+	//It sets a flag to true in order to render the DeleteModal
+	//Furthemore it receives the id of the specific contact which user wants to delete
+	//in order to pass it (via ContextAPI) to the DeleteModal where it can be used to permanently delete the contact
+	//if the YES button is clicked via permanentDelete() function
 	const deleteBtnHandler = (id) => {
 		setConfirmationDeleteMsg(true);
 		setIdToDelete(id);
 	};
 
+	//When the button for adding a new contact(blue one with the plus user icon from FontAwesome)
+	//is clicked in order to render the AddContact Component
 	const addContactBtnHandler = () => {
 		setAddBtn(true);
 	};
 
 	return (
+		//I provide the Context API to all descendants(children elements and children of these clildren elements, etc.)
+		//It's a better,more convenient and safer way to pass values and functions ,than props.
 		<ContactsContext.Provider
 			value={{
 				contacts: contacts,

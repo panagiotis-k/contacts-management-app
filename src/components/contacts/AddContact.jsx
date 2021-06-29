@@ -10,6 +10,8 @@ import validator from 'validator';
 //mounts.ID '3' will be assigned to the first contact that will be added in this form
 let count = 2;
 
+//I've made use of one third party library named 'validator' in order to implement
+//some validation ONLY for the phone number input
 const AddContact = (props) => {
 	const { onSubmitAddHandler, setAddBtn } = useContext(ContactsContext);
 	const [ enteredFirstname, setFirstname ] = useState('');
@@ -216,6 +218,7 @@ const AddContact = (props) => {
 		return true;
 	}
 
+	//Using validator library
 	function validPhoneNumber(number) {
 		if (validator.isMobilePhone(number)) {
 			return true;
@@ -223,7 +226,7 @@ const AddContact = (props) => {
 		return false;
 	}
 
-	//Implementing some logic for the warning prompts when the user types an invalid email
+	//Implementing some logic for the warning prompts when the user types an invalid email or phone number
 	//or tries to omit first and last name fields
 	const firstNameInputeIsInvalid = !enteredFirstNameIsValid && enteredFirstNameTouched;
 	const firstNameInputClasses = firstNameInputeIsInvalid ? 'invalid' : '';
