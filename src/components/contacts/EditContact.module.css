@@ -13,6 +13,8 @@
 }
 .form-control form {
 	width: 75%;
+	display: flex;
+	flex-direction: column;
 }
 .form-control .new-contact-header {
 	text-align: center;
@@ -23,9 +25,8 @@
 .inputField {
 	display: flex;
 	flex-direction: column;
-	margin: 3px 0;
+	margin: 5px;
 }
-
 .inputField.invalid input {
 	border: 1px solid rgb(144, 7, 7);
 	background-color: rgb(209, 158, 158);
@@ -47,12 +48,26 @@
 	outline: none;
 }
 
+form span {
+	font-size: 12px;
+	display: inline-block;
+	margin-bottom: 3px;
+}
+
 .inputField label {
 	font-style: italic;
 }
 
 .submit-btn {
-	margin-top: 10px;
+	display: block;
+	margin: 5px 0;
+	position: relative;
+	bottom: 1px;
+	background-color: rgb(24, 141, 24, .4);
+}
+
+.submit-btn:hover {
+	background-color: rgb(95, 155, 95);
 }
 
 .form-control .cancel-btn {

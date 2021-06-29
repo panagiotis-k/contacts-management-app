@@ -3,7 +3,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	align-items: left;
 	text-align: left;
 	height: 100%;
 	border-radius: 10px;
@@ -13,6 +12,8 @@
 }
 .form-control form {
 	width: 75%;
+	display: flex;
+	flex-direction: column;
 }
 .form-control .new-contact-header {
 	text-align: center;
@@ -23,7 +24,7 @@
 .inputField {
 	display: flex;
 	flex-direction: column;
-	margin: 3px 0;
+	margin: 5px;
 }
 .inputField.invalid input {
 	border: 1px solid rgb(144, 7, 7);
@@ -40,11 +41,15 @@
 	border: none;
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px rgb(0, 0, 0, .7);
-	margin: 5px;
 }
 
 .inputField input:focus {
 	outline: none;
+}
+
+form span {
+	font-size: 12px;
+	display: inline-block;
 }
 
 .inputField label {
@@ -52,7 +57,10 @@
 }
 
 .submit-btn {
-	margin-top: 10px;
+	display: block;
+	margin: 5px 0;
+	position: relative;
+	bottom: 1px;
 }
 
 .form-control .cancel-btn {

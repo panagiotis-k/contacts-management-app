@@ -4,7 +4,9 @@ import Card from '../../UI/Card';
 import Button from '../../UI/Button';
 import styles from './EditContact.module.css';
 import ContactModal from '../../UI/ContactModal';
+import validator from 'validator';
 
+//follows the same pattern as AddContact Component
 const EditContact = (props) => {
 	const { contactForEdit, setContactForEdit } = props;
 	const { firstName, lastName, address, email, phoneNumber } = contactForEdit;
@@ -21,61 +23,136 @@ const EditContact = (props) => {
 	const [ enteredEmailIsValid, setEnteredEmailIsValid ] = useState(false);
 	const [ enteredEmailTouched, setEnteredEmailTouched ] = useState(false);
 
+	const [ enteredPhoneIsValid, setEnteredPhoneIsValid ] = useState(false);
+	const [ enteredPhoneTouched, setEnteredPhoneTouched ] = useState(false);
+
 	const submitHandler = (event) => {
 		event.preventDefault();
 
 		setEnteredFirstNameTouched(true);
 		setEnteredLastNameTouched(true);
 		setEnteredEmailTouched(true);
+		setEnteredPhoneTouched(true);
 
 		if (firstName.trim() === '') {
 			if (lastName.trim() === '') {
-				if (!validateEmail(email)) {
+				if (!validEmail(email)) {
+					if (!validPhoneNumber(phoneNumber)) {
+						setEnteredFirstNameIsValid(false);
+						setEnteredLastNameIsValid(false);
+						setEnteredEmailIsValid(false);
+						setEnteredPhoneIsValid(false);
+						return;
+					} else {
+						setEnteredFirstNameIsValid(false);
+						setEnteredLastNameIsValid(false);
+						setEnteredEmailIsValid(false);
+						setEnteredPhoneIsValid(true);
+						return;
+					}
+				} else if (!validPhoneNumber(phoneNumber)) {
+					setEnteredEmailIsValid(true);
 					setEnteredFirstNameIsValid(false);
 					setEnteredLastNameIsValid(false);
-					setEnteredEmailIsValid(false);
+					setEnteredPhoneIsValid(false);
 					return;
 				} else {
 					setEnteredEmailIsValid(true);
 					setEnteredFirstNameIsValid(false);
 					setEnteredLastNameIsValid(false);
+					setEnteredPhoneIsValid(true);
 					return;
 				}
-			} else if (!validateEmail(email)) {
-				setEnteredFirstNameIsValid(false);
-				setEnteredEmailIsValid(false);
-				setEnteredLastNameIsValid(true);
-				return;
+			} else if (!validEmail(email)) {
+				if (!validPhoneNumber(phoneNumber)) {
+					setEnteredFirstNameIsValid(false);
+					setEnteredEmailIsValid(false);
+					setEnteredLastNameIsValid(true);
+					setEnteredPhoneIsValid(false);
+					return;
+				} else {
+					setEnteredFirstNameIsValid(false);
+					setEnteredEmailIsValid(false);
+					setEnteredLastNameIsValid(true);
+					setEnteredPhoneIsValid(true);
+					return;
+				}
 			} else {
-				setEnteredFirstNameIsValid(false);
-				setEnteredEmailIsValid(true);
-				setEnteredLastNameIsValid(true);
-				return;
+				if (!validPhoneNumber(phoneNumber)) {
+					setEnteredFirstNameIsValid(false);
+					setEnteredEmailIsValid(true);
+					setEnteredLastNameIsValid(true);
+					setEnteredPhoneIsValid(false);
+					return;
+				} else {
+					setEnteredFirstNameIsValid(false);
+					setEnteredEmailIsValid(true);
+					setEnteredLastNameIsValid(true);
+					setEnteredPhoneIsValid(true);
+					return;
+				}
 			}
 		} else if (lastName.trim() === '') {
-			if (!validateEmail(email)) {
+			if (!validEmail(email)) {
+				if (!validPhoneNumber(phoneNumber)) {
+					setEnteredFirstNameIsValid(true);
+					setEnteredLastNameIsValid(false);
+					setEnteredEmailIsValid(false);
+					setEnteredPhoneIsValid(false);
+					return;
+				} else {
+					setEnteredFirstNameIsValid(true);
+					setEnteredLastNameIsValid(false);
+					setEnteredEmailIsValid(false);
+					setEnteredPhoneIsValid(true);
+					return;
+				}
+			} else {
+				if (!validPhoneNumber(phoneNumber)) {
+					setEnteredFirstNameIsValid(true);
+					setEnteredLastNameIsValid(false);
+					setEnteredEmailIsValid(true);
+					setEnteredPhoneIsValid(false);
+					return;
+				} else {
+					setEnteredFirstNameIsValid(true);
+					setEnteredLastNameIsValid(false);
+					setEnteredEmailIsValid(true);
+					setEnteredPhoneIsValid(true);
+					return;
+				}
+			}
+		} else if (!validEmail(email)) {
+			if (!validPhoneNumber(phoneNumber)) {
 				setEnteredFirstNameIsValid(true);
-				setEnteredLastNameIsValid(false);
+				setEnteredLastNameIsValid(true);
 				setEnteredEmailIsValid(false);
+				setEnteredPhoneIsValid(false);
 				return;
 			} else {
 				setEnteredFirstNameIsValid(true);
-				setEnteredLastNameIsValid(false);
-				setEnteredEmailIsValid(true);
+				setEnteredLastNameIsValid(true);
+				setEnteredEmailIsValid(false);
+				setEnteredPhoneIsValid(true);
 				return;
 			}
-		} else if (!validateEmail(email)) {
-			setEnteredFirstNameIsValid(true);
-			setEnteredLastNameIsValid(true);
-			setEnteredEmailIsValid(false);
-			return;
+		} else {
+			if (!validPhoneNumber(phoneNumber)) {
+				setEnteredFirstNameIsValid(true);
+				setEnteredLastNameIsValid(true);
+				setEnteredEmailIsValid(true);
+				setEnteredPhoneIsValid(false);
+				return;
+			} else {
+				setEnteredFirstNameIsValid(true);
+				setEnteredLastNameIsValid(true);
+				setEnteredEmailIsValid(true);
+				setEnteredPhoneIsValid(true);
+			}
+
+			//Sending the new contact to the App component
+			onSubmitEditHandler(idToEdit, contactForEdit);
 		}
-
-		setEnteredFirstNameIsValid(true);
-		setEnteredLastNameIsValid(true);
-		setEnteredEmailIsValid(true);
-
-		onSubmitEditHandler(idToEdit, contactForEdit);
 	};
 
 	const firstnameHandler = (event) => {
@@ -111,13 +188,20 @@ const EditContact = (props) => {
 		});
 	};
 
-	function validateEmail(email) {
+	function validEmail(email) {
 		let atPosition = email.indexOf('@');
 		let dotPosition = email.lastIndexOf('.');
 		if (atPosition < 1 || dotPosition < atPosition + 2 || dotPosition + 2 >= email.length) {
 			return false;
 		}
 		return true;
+	}
+
+	function validPhoneNumber(number) {
+		if (validator.isMobilePhone(number)) {
+			return true;
+		}
+		return false;
 	}
 
 	const firstNameInputeIsInvalid = !enteredFirstNameIsValid && enteredFirstNameTouched;
@@ -128,6 +212,9 @@ const EditContact = (props) => {
 
 	const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 	const emailInputClasses = emailInputIsInvalid ? 'invalid' : '';
+
+	const phoneInputIsInvalid = !enteredPhoneIsValid && enteredPhoneTouched;
+	const phoneInputClasses = phoneInputIsInvalid ? 'invalid' : '';
 
 	return (
 		<ContactModal>
@@ -178,7 +265,7 @@ const EditContact = (props) => {
 						<input id="email" name="email" type="email" onChange={emailHandler} value={email || ''} />
 					</div>
 					{emailInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid email</span>}
-					<div className={styles.inputField}>
+					<div className={`${styles.inputField} ${styles[`${phoneInputClasses}`]}`}>
 						<label htmlFor="tel">Phone:</label>
 						<input
 							id="tel"
@@ -188,6 +275,7 @@ const EditContact = (props) => {
 							value={phoneNumber || ''}
 						/>
 					</div>
+					{phoneInputIsInvalid && <span style={{ color: 'rgb(144, 7, 7)' }}>Ivalid Phone number</span>}
 					<Button className={styles['submit-btn']} type="submit">
 						Save
 					</Button>
